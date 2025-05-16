@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+import sys
+import json
+import requests
+import client
+
+def main():
+    if len(sys.argv) != 3 and len(sys.argv) != 4:
+        print("Usage: ./rep_get_doc_file <session file> <document name> [file]")
+        sys.exit(1)
+
+
+    session_file = sys.argv[1]
+    document_name = sys.argv[2]
+    output_file = sys.argv[3] if len(sys.argv) > 3 else None
+    client.get_doc_file(session_file, document_name, output_file)
+
+if __name__ == "__main__":
+    main()

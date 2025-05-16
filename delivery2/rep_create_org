@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+import sys
+import client
+
+def main():
+    if len(sys.argv) != 6:
+        print("Usage: ./rep_create_org <organization> <username> <password> <email> <public_key_file>")
+        sys.exit(1)
+
+    organization = sys.argv[1]
+    username = sys.argv[2]
+    name = sys.argv[3]
+    email = sys.argv[4]
+    public_key_file = sys.argv[5]
+
+    client.create_organization(organization, username, name, email, public_key_file)
+
+if __name__ == "__main__":
+    main()

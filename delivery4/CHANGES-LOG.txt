@@ -1,0 +1,20 @@
+Mudanças gerais:
+- Criação de um ficheiro 'reset.py' que apaga a base de dados atual e cria uma nova usando as tabelas de 'schema.sql'
+- Criação de um ficheiro 'TEST_COMMANDS.md' que contém os comandos usados para testar o sistema, sendo que alguns destes comandos têm uma breve explicação do que fazem/output.
+- Organização do repositório
+
+Mudanças no código:
+- Atualização do comando 'rep_get_doc_metadata'. Este agora faz print da metadata do documento e guarda no ficheiro metadata.json. Isto ajuda depois no uso do comando 'rep_decrypt_file' podendo usar este ficheiro sem ter que alterar nada e assim obter o ficheiro desencriptado.
+- Agora ao adicionar um documento, o file_handle do mesmo é calculado através do hash do plain text e não do cipher text. Isto permite-nos garantir integridade do documento quando o estamos a desencriptar.
+- Quando uma sessão é criada (rep_create_session), o challenge não é encriptado. O cliente recebe esse challenge e retorna apenas a sua assinatura, sem encriptação. No repositório, o challenge também não é encriptado. Em vez de comparar diretamente o challenge recebido com o armazenado, o repositorio verifica se a assinatura fornecida pelo cliente é válida.
+- Os roles agora não são case-sensitive, corrigindo o problema de não ser possível listar o as permissões/roles do "Manager"
+- As par de chaves criadas com rep_subject_credentials que antes eram dois ficheiros separados (credential.pem e credential_public.pem) agora são um só ficheiro (credential.pem). A chave privada é encriptada com a password fornecida pelo utilizador.
+- Adicionámos logging no repositorio. O repositorio para além de fazer print das mensagens, guarda-as num ficheiro 'repository.log' todos os eventos que ocorrem no repositorio.
+
+Mudanças no relatório:
+- Reorganização do relatório
+- Atualização do capítulo da 'Authentication' explicando melhor como foi feita e as decisões tomadas.
+- Adição de um novo capítulo "Roles"
+- Adição de um novo capítulo "Subjects"
+- Adição de um novo capítulo "ACL" onde se fala sobre a ACL da Organização e da ACL dos documentos
+- Alteração do texto de algumas partes do relatório, nomeadamente os tópicos sobre encriptação e desencriptação de documentos e a descrição do comando 'rep_get_doc_metadata'.

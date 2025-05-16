@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+import json
+import requests
+import sys
+import client
+import os
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: ./rep_list_docs <session_file> [-s username] [-d nt/ot/et date]")
+        sys.exit(1)
+
+    session_file = sys.argv[1]
+    with open(session_file, "r") as f:
+        session_data = json.load(f)
+
+    organization_id = session_data.get("organization_id")
+    subject_id = session_data.get("subject_id")
+    private_key_path = session_data.get("PRIV_KEY")
+    signature = session_data.get("signature")
+    with open(private_key_path, "r") as f:
+        private_key = f.read()
+    rep_pub_key = session_data.get("REP_PUB_KEY")
+
+    username = None
+    date_filter = None
+    date_operator = None
+
+    if "-s" in sys.argv:
+        username = sys.argv[sys.argv.index("-s") + 1]
+    if "-d" in sys.argv:
+        date_operator = sys.argv[sys.argv.index("-d") + 1]
+        date_filter = sys.argv[sys.argv.index("-d") + 2]
+
+    params = {
+        "organization_id": organization_id,
+        "subject_id": subject_id,
+        "nonce": os.urandom(16).hex(),
+        "seq_number": session_data.get("seq_number"),
+        "signature": signature
+    }
+    if username:
+        params["username"] = username
+    if date_filter and date_operator:
+        params["date_filter"] = date_filter
+        params["date_operator"] = date_operator
+
+    client.list_docs(params, private_key, rep_pub_key, session_file, session_data)
+
+if __name__ == "__main__":
+    main()

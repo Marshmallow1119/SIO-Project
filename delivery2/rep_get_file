@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+import sys
+import client
+
+def main():
+    if len(sys.argv) != 2 and len(sys.argv) != 3:
+        print("Usage: ./rep_get_file <file_handle> [output_filename]")
+        sys.exit(1)
+
+    file_handle = sys.argv[1]
+    output_filename = sys.argv[2] if len(sys.argv) > 2 else None
+    client.get_file(file_handle, output_filename)
+
+
+if __name__ == "__main__":
+    main()

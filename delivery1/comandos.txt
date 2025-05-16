@@ -1,0 +1,86 @@
+./rep_create_org org1 user1 secret user@test.com key_public.pem
+Response: {'message': 'Organization created successfully'}
+
+./rep_list_orgs
+Organizations: [{'id': 1, 'name': 'org1'}]
+
+
+./rep_get_doc_file session1 doc1
+File content:
+ bom dia jorge123
+
+
+./rep_list_docs session1
+Documents: [
+  {
+    "creation_date": "2024-11-20",
+    "creator": 1,
+    "d_handle": 1,
+    "f_handle": "NaLsHACvzVmHXJTN5TcgW9ajjo3wwd73dX+U/KNpPnU=",
+    "name": "doc1",
+    "organization_id": 1
+  }
+]
+
+ ./rep_get_doc_metadata session1 doc1
+Document metadata: {
+  "cipher_text": "cDYrC6uScZrbBkUc7BuZeA==",
+  "creation_date": "2024-11-20",
+  "creator": 1,
+  "document_name": "doc1",
+  "encryption_details": {
+    "algorithm": "AES-GCM",
+    "nonce": "93d30e9910612949fbe8f7b6",
+    "salt": "8fdd39eda75ea392a37a8a24790017cf",
+    "tag": "073dee445aea4c587ed58569692a05a6"
+  },
+  "file_handle": "NaLsHACvzVmHXJTN5TcgW9ajjo3wwd73dX+U/KNpPnU=",
+  "organization_id": 1,
+  "password": "267ceb8406684683cfdadeed60ebbc02075fa9e3b227d96b4a0187876a5d69da"
+}
+
+./rep_list_subjects session1
+Subjects: [
+  {
+    "email": "user@test.com",
+    "fullname": "secret",
+    "id": 1,
+    "public_key": null,
+    "status": "suspended",
+    "username": "user1"
+  }
+]
+
+./rep_list_subjects session1 user1
+Subjects: {
+  "email": "user@test.com",
+  "fullname": "secret",
+  "id": 1,
+  "username": "user1",
+  "status": "suspended",
+}
+
+./rep_suspend_subject session1 user1
+Response: {
+  "message": "Subject suspended successfully",
+  "session_data": {
+    "last_interaction": 1732137811.1222558
+  }
+}
+
+./rep_activate_subject session1 user1
+Activated user successfully.
+Response: {
+  "message": "Subject activated successfully",
+  "session_data": {
+    "last_interaction": 1732137800.4653757
+  }
+}
+
+./rep_add_doc session1 doc3 jorge.txt
+Response: {
+  "message": "Document created successfully",
+  "session_data": {
+    "last_interaction": 1732138228.510653
+  }
+}

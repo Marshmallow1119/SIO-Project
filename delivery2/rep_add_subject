@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+import sys
+import json
+import requests
+import client
+
+def main():
+    if len(sys.argv) != 6:
+        print("Usage: ./rep_add_subject.py <session file> <username> <name> <email> <credentials_file>")
+        sys.exit(1)
+
+    session_file_name = sys.argv[1]
+    username = sys.argv[2]
+    name = sys.argv[3]
+    email = sys.argv[4]
+    public_key_file = sys.argv[5]
+
+    client.add_subject(session_file_name, username, name, email, public_key_file)
+
+if __name__ == "__main__":
+    main()

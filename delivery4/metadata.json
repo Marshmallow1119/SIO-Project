@@ -1,0 +1,15 @@
+{
+    "document_name": "doc1",
+    "creation_date": "2025-01-28",
+    "creator": 1,
+    "organization_id": 1,
+    "cipher_text": "4juDpNotQJD1Xxgp4hRDJ0QosFBRmdx6/LXxqkIFO0BaKTg=",
+    "file_handle": "28a70ea9d4486580a02e6342e790a0cd680b96ee78553ac7bae6143c1c9949c7",
+    "password": "84c5bd5dd96a26454204e7ca48d411a9fb20c3fe9da51d1596f2506dee23b6ea",
+    "encryption_details": {
+        "algorithm": "AES-GCM",
+        "salt": "8cf2c1ecf6dc73cac30e2d44b9379bc9",
+        "nonce": "a81a31a850c22a9be15e4ded",
+        "tag": "e2200e75237f20d6503043bdc42f24cf"
+    }
+}

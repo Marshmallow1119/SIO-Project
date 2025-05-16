@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+import sys
+import json
+import client
+import requests
+
+def main():
+    if len(sys.argv) != 3:
+        print("Usage: ./rep_list_permission_roles <session file> <permission>")
+        sys.exit(1)
+
+    session_file = sys.argv[1]
+    permission = sys.argv[2]
+    client.list_permission_roles(session_file, permission)
+
+if __name__ == "__main__":
+    main()

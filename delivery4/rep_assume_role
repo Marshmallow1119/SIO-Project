@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+import sys
+import json
+import client
+import requests
+
+def main():
+    if len(sys.argv) != 3:
+        print("Usage: ./rep_assume_role <session file> <role>")
+        sys.exit(1)
+
+    session_file = sys.argv[1]
+    role = sys.argv[2]
+    client.assume_role(session_file, role)
+    
+    
+if __name__ == "__main__":
+    main()

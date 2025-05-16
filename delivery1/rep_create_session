@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+
+import sys
+import requests
+import client
+
+def main():
+    if len(sys.argv) != 6:
+        print("Usage: ./rep_create_session <organization> <username> <password> <credentials file> <session file>")
+        sys.exit(1)
+        
+    organization = sys.argv[1]
+    username = sys.argv[2]
+    password = sys.argv[3]
+    credentials_file = sys.argv[4]
+    session_file_name = sys.argv[5]
+    client.create_session(organization, username, password, credentials_file, session_file_name)
+
+
+if __name__ == "__main__":
+    main()

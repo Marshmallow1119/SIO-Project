@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+import sys
+import json
+import client
+import requests
+
+def main():
+    if len(sys.argv) != 3:
+        print("Usage: ./rep_subject_roles <session file> <username>")
+        sys.exit(1)
+
+    session_file = sys.argv[1]
+    username = sys.argv[2]
+    client.list_subject_roles(session_file, username)
+
+if __name__ == "__main__":
+    main()

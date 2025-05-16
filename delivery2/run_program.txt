@@ -1,0 +1,142 @@
+criar bd 
+
+python3 init_db.py
+
+python3 repository.py
+python3 rep_create_org org1 tomas tomas123 tomasbras@gmail.com key_public.pem
+
+password: art
+
+chmood ++x 
+
+depois para criar um subject temos de criar uma session
+
+./rep_subject_credentials "banana" "credentials/credential.pem"
+ 
+./rep_create_org "MyOrg1" "user1" "User One" "user1@example.com" "credentials/credential_public.pem"
+
+./rep_list_orgs
+ 
+./rep_create_session "MyOrg1" "user1" "banana" "credentials/credential.pem" "session/sessionFile.json"
+
+ ./rep_assume_role "session/sessionFile.json" "manager"
+
+
+./rep_subject_credentials "banana2" "credentials/credential2.pem"
+
+./rep_add_subject "session/sessionFile.json" "user2" "utilizador2" "user2@gmail.com" "credentials/credential2_public.pem"
+ 
+./rep_create_session "MyOrg1" "user2" "banana2" "credentials/credential2.pem" "session/sessionFile2.json"
+
+
+./rep_subject_credentials "banana3" "credentials/credential3.pem"
+
+./rep_add_subject "session/sessionFile2.json" "user3" "utilizador3" "user3@gmail.com" "credentials/credential3_public.pem"
+
+./rep_create_session "MyOrg1" "user2" "banana2" "credentials/credential2.pem" "session/sessionFile2.json"
+
+
+./rep_add_role "session/sessionFile.json" "newrole" 
+
+./rep_add_permission "session/sessionFile.json" "newrole" "SUBJECT_NEW"  
+./rep_remove_permission "session/sessionFile.json" "newrole" "SUBJECT_NEW"
+
+./rep_add_permission "session/sessionFile.json" "newrole" "user2" 
+./rep_remove_permission "session/sessionFile.json" "newrole" "user2"
+
+
+./rep_list_role_permissions "session/sessionFile.json" "manager"
+./rep_list_role_permissions "session/sessionFile.json" "newrole"
+
+./rep_list_subject_roles "session/sessionFile.json" "user1"
+./rep_list_subject_roles "session/sessionFile.json" "user2"
+
+ ./rep_list_roles "session/sessionFile.json" 
+
+./rep_suspend_role session/sessionFile.json newrole
+./rep_reactivate_role session/sessionFile.json newrole
+./rep_add_subject "session/sessionFile2.json" "user3" "utilizador3" "user3@gmail.com" "credentials/credential3_public.pem"
+
+./rep_list_permission_roles "session/sessionFile.json" "DOC_NEW"
+
+./rep_add_doc "session/sessionFile.json" "doc1" "jorge.txt"
+
+./rep_list_docs "session/sessionFile.json"
+
+./rep_acl_doc "session/sessionFile.json" "doc1" "+" "manager" "DOC_READ"
+./rep_acl_doc "session/sessionFile.json" "doc1" "-" "manager" "DOC_READ"
+./rep_acl_doc "session/sessionFile.json" "doc1" "manager" "DOC_READ"
+
+./rep_acl_doc "session/sessionFile.json" "documento1" "+" "manager" "DOC_READ"
+./rep_acl_doc "session/sessionFile.json" "documento1" "newrole" "DOC_READ"
+
+
+./rep_get_doc_metadata "session/sessionFile.json" "doc1"
+
+./rep_get_file wP8WkvNZiyTiTrf2uFzgO7JZ65EHjODTjMtQ5U0svn8=
+
+./rep_get_doc_file "session/sessionFile.json" "doc1" "testeOutput.txt"
+./rep_get_doc_file "session/sessionFile.json" "doc1" 
+
+
+./rep_delete_doc "session/sessionFile.json" "doc1"
+./rep_delete_doc "session/sessionFile2.json" "doc1"
+
+./rep_subject_credentials "banana" "credentials/credential.pem"
+
+./rep_create_org "MyOrg1" "user1" "User One" "user1@gmail.com" "credentials/credential_public.pem"
+
+./rep_list_orgs
+
+./rep_get_file "doc1" "jorge.txt"
+
+./rep_assume_role "session/sessionFile.json" "manager"
+
+./rep_drop_role "session/sessionFile.json" "manager"
+
+./rep_list_roles "session/sessionFile.json" 
+
+./rep_list_subjects "session/sessionFile.json" "user1"
+
+./rep_list_role_subjects "session/sessionFile.json" "manager"
+
+./rep_list_subject_roles "session/sessionFile.json" "user1"
+
+./rep_list_role_permissions "session/sessionFile.json" "manager"
+
+./rep_list_permission_roles "session/sessionFile.json" "DOC_READ"
+
+./rep_add_doc "session/sessionFile.json" "doc1" "jorge.txt"
+
+./rep_list_docs "session/sessionFile.json"
+
+./rep_activate_subject "session/sessionFile1.json" "user1"
+
+./rep_suspend_subject "session/sessionFile1.json" "user1"
+
+./rep_add_role "session/sessionFile.json" "manager"
+
+./rep_add_permission "session/sessionFile.json" "manager" "user1"
+./rep_remove_permission "session/sessionFile.json" "manager" "user1"
+
+./rep_add_permission "session/sessionFile.json" "manager" "DOC_READ"
+./rep_remove_permission "session/sessionFile.json" "manager" "DOC_READ"
+
+./rep_get_doc_metadata "session/sessionFile.json" "doc1"
+
+./rep_get_doc_file "session/sessionFile.json" "doc1" "jorgeOutput.txt"
+./rep_get_doc_file "session/sessionFile.json" "doc1" 
+
+
+./rep_delete_doc "session/sessionFile.json" "doc1"
+./rep_delete_doc "session/sessionFile2.json" "doc1"
+
+
+./rep_acl_doc "session/sessionFile.json" "doc1" "+" "manager" "DOC_READ"
+./rep_acl_doc "session/sessionFile.json" "doc1" "-" "manager" "DOC_READ"
+./rep_acl_doc "session/sessionFile.json" "doc1" "manager" "DOC_READ"
+
+
+./rep_acl_doc "session/sessionFile.json" "documento1" "+" "manager" "DOC_READ"
+./rep_acl_doc "session/sessionFile.json" "documento1" "newrole" "DOC_READ"
+

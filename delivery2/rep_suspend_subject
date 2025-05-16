@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+import sys
+import json
+import requests
+import client
+
+def main():
+    if len(sys.argv) != 3:
+        print("Usage: ./red_suspend_subject <session file> <username>")
+        sys.exit(1)
+
+    session_file_name = sys.argv[1]
+    username = sys.argv[2]
+
+    with open(session_file_name, "r") as session_file:
+        session_data = json.loads(session_file.read())
+
+    organization = session_data["organization_id"]
+    subject = session_data["subject_id"]
+
+    client.suspend_subject(session_file_name, username, organization, subject, session_data)
+
+if __name__ == "__main__":
+    main()
